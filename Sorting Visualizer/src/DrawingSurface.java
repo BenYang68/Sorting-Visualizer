@@ -59,10 +59,11 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		
 		newBars();
 		
-		insertion = new InsertionSort(BarList, BarList.size());
+		
 	}
 	
 	public void newBars() {
+		BarList = new ArrayList<Bars>();
 		for(int i =0 ; i<NumRects;i++) {
 			BarList.add(new Bars(250+ i*10, 300, (int)(Math.random()*600),10));
 		}
@@ -93,7 +94,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		  text("Bubble Sort", BubbleSortX, BubbleSortY);
 		  ellipseMode(CENTER);
 		}
-
+ 
 	/**
 	 * Prompts player to choose character, then starts running the game
 	 */
@@ -241,6 +242,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 
 				if(started) {
 					 startTime = System.currentTimeMillis();
+					 insertion = new InsertionSort(BarList, BarList.size());
 					 started = false;
 				}
 
@@ -287,8 +289,12 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		if(overCircle1(90, 90,100)) {
 			fill(0,250,0);
 			text("Back",90, 90);
-			if(mousePressed)
+			if(mousePressed) {
 				stage-=1;
+				newBars();
+				started=true;
+				end=true;
+			}
 		}
 		fill(0,0,0);
 

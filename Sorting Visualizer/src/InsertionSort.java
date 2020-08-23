@@ -23,10 +23,7 @@ public class InsertionSort {
 				if(i==0 && list1.get(index).getHeight()<list1.get(i).getHeight()) {
 					list1.remove(index);
 					list1.add(0,b);
-				}
-					
-					
-					
+				}					
 				if(list1.get(i).getHeight() <= list1.get(index).getHeight()) {
 					list1.remove(index);
 					list1.add(i+1,b);
