@@ -239,27 +239,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 				break;
 			}
 			case 4: {
-
-				if(started) {
-					 startTime = System.currentTimeMillis();
-					 insertion = new InsertionSort(BarList, BarList.size());
-					 started = false;
-				}
-
-				if(insertion.nextStep()>0) {
-					
-					text("Insertion Sort",  DRAWING_WIDTH/2, 100);
-					BarList = insertion.getlist(); 
-				}
-				else {
-					if(end) {
-						EndTime = System.currentTimeMillis();
-						end = false;
-					}
-					text("Time completixy: O(N^2)",  DRAWING_WIDTH/2, 100);
-					text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH/2, 200 );
-				}
-				displayBars();
+				runInsertion();
 				break;
 			}
 			case 5: {
@@ -274,6 +254,29 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		}
 		
 		
+	}
+	
+	public void runInsertion() {
+		if(started) {
+			 startTime = System.currentTimeMillis();
+			 insertion = new InsertionSort(BarList, BarList.size());
+			 started = false;
+		}
+
+		if(insertion.nextStep()>0) {
+			
+			text("Insertion Sort",  DRAWING_WIDTH/2, 100);
+			BarList = insertion.getlist(); 
+		}
+		else {
+			if(end) {
+				EndTime = System.currentTimeMillis();
+				end = false;
+			}
+			text("Time completixy: O(N^2)",  DRAWING_WIDTH/2, 100);
+			text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH/2, 200 );
+		}
+		displayBars();
 	}
 	
 	public void displayBars() {
@@ -301,10 +304,6 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	}
 
 
-
-	public void runInsertion() {
-		
-	}
 	/**
 	 * draws the the start screen
 	 */
