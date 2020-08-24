@@ -221,12 +221,14 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		if(stage ==3) {
 			
 			
-			background(250,250,250);
 
-			setBackButton() ;
 
 
 			
+			background(250,250,250);
+			setBackButton() ;
+
+
 			switch(SortingMethod) {
 			case 1: {
 				text("Quick Sort", DRAWING_WIDTH/2, 100);
@@ -245,7 +247,6 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 				break;
 			}
 			case 5: {
-				text("Heap Sort",  DRAWING_WIDTH/2, 100);
 				runHeap();
 				break;
 			}
@@ -262,7 +263,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	
 	
 	public void runHeap() {
-		background(250,250,250);
+		//background(250,250,250);
 		if(started) {
 			 startTime = System.currentTimeMillis();
 			 heapSort = new HeapSort(BarList, BarList.size());
@@ -270,7 +271,6 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		}
 
 		if(heapSort.nextStep()>0) {
-			
 			text("Heap Sort",  DRAWING_WIDTH/2, 100);
 			BarList = heapSort.getList(); 
 		}
