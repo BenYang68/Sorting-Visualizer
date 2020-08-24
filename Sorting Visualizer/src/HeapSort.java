@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 public class HeapSort {
 	Queue<Bars> pq = new PriorityQueue<>(
 			(a,b) -> b.getHeight()-a.getHeight());
@@ -23,6 +25,14 @@ public class HeapSort {
 		return 1;
 	}
 	public ArrayList<Bars> getList() {
-		return (ArrayList)res;
+		ArrayList<Bars> wanted = new ArrayList<Bars>();
+		for(Bars b : res)
+			wanted.add(b);
+        java.util.Iterator<Bars> value = pq.iterator(); 
+        while (value.hasNext()) { 
+            wanted.add(value.next());
+        } 
+
+		return (ArrayList)wanted;
 	}
 }
