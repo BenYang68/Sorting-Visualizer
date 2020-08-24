@@ -6,6 +6,8 @@ import java.util.Queue;
 public class HeapSort {
 	Queue<Bars> pq = new PriorityQueue<>(
 			(a,b) -> b.getHeight()-a.getHeight());
+	
+	
 	List<Bars> res = new ArrayList<>();
 	int size;
 	int index = 0;

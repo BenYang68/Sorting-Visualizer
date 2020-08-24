@@ -279,7 +279,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 				EndTime = System.currentTimeMillis();
 				end = false;
 			}
-			text("Time completixy: O(NLOG(N)",  DRAWING_WIDTH/2, 100);
+			text("Time completixy: O(NLOG(N))",  DRAWING_WIDTH/2, 100);
 			text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH/2, 200 );
 		}
 		displayBars();
