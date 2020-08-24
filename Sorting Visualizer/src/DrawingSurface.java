@@ -36,6 +36,8 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	
 	ArrayList<Bars> BarList = new ArrayList<Bars>();
 	InsertionSort insertion ;
+	HeapSort heapSort ;
+
 
 	/**
 	 * Constructor to add obstacles and initialize bullets
@@ -244,6 +246,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 			}
 			case 5: {
 				text("Heap Sort",  DRAWING_WIDTH/2, 100);
+				runHeap();
 				break;
 			}
 			case 6: {
@@ -256,6 +259,31 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		
 	}
 	
+	
+	
+	public void runHeap() {
+		background(250,250,250);
+		if(started) {
+			 startTime = System.currentTimeMillis();
+			 heapSort = new HeapSort(BarList, BarList.size());
+			 started = false;
+		}
+
+		if(heapSort.nextStep()>0) {
+			
+			text("Heap Sort",  DRAWING_WIDTH/2, 100);
+			BarList = heapSort.getList(); 
+		}
+		else {
+			if(end) {
+				EndTime = System.currentTimeMillis();
+				end = false;
+			}
+			text("Time completixy: O(NLOG(N)",  DRAWING_WIDTH/2, 100);
+			text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH/2, 200 );
+		}
+		displayBars();
+	}
 	public void runInsertion() {
 		if(started) {
 			 startTime = System.currentTimeMillis();
