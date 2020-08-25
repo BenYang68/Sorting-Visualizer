@@ -26,12 +26,14 @@ public class HeapSort {
 	}
 	public ArrayList<Bars> getList() {
 		ArrayList<Bars> wanted = new ArrayList<Bars>();
+
 		for(Bars b : res)
-			wanted.add(b);
+			wanted.add(0,b);
         java.util.Iterator<Bars> value = pq.iterator(); 
         while (value.hasNext()) { 
-            wanted.add(value.next());
+            wanted.add(0,value.next());
         } 
+
 
 		return (ArrayList)wanted;
 	}
