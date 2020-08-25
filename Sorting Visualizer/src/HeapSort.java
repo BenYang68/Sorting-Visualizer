@@ -34,7 +34,6 @@ public class HeapSort {
             wanted.add(0,value.next());
         } 
 
-
 		return (ArrayList)wanted;
 	}
 }
