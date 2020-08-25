@@ -20,12 +20,19 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 
 	
 
-	int QuickSortX, QuickSortY;
-	int MergeSortX, MergeSortY;
-	int SelectionSortX, SelectionSortY;
-	int InsertionSortX, InsertionSortY;
-	int HeapSortX, HeapSortY;
-	int BubbleSortX, BubbleSortY;
+	int QuickSortX = DRAWING_WIDTH/6;
+	int MergeSortX = DRAWING_WIDTH/6;
+	int SelectionSortX = DRAWING_WIDTH/2;
+	int InsertionSortX = DRAWING_WIDTH/2;
+	int HeapSortX = 5*DRAWING_WIDTH/6;
+	int BubbleSortX = 5*DRAWING_WIDTH/6;
+	
+	int QuickSortY = DRAWING_HEIGHT/4;
+	int MergeSortY = 3*DRAWING_HEIGHT/5;
+	int SelectionSortY = DRAWING_HEIGHT/4;
+	int InsertionSortY = 3*DRAWING_HEIGHT/5;
+	int HeapSortY=DRAWING_HEIGHT/4;
+	int BubbleSortY= 3*DRAWING_HEIGHT/5;
 	int size = 300;
 	int stage =1;
 	int SortingMethod;
@@ -45,21 +52,6 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	 */
 	public DrawingSurface() {
 		super();
-		QuickSortX = DRAWING_WIDTH/6;
-		MergeSortX = DRAWING_WIDTH/6;
-		SelectionSortX = DRAWING_WIDTH/2;
-		InsertionSortX = DRAWING_WIDTH/2;
-		HeapSortX = 5*DRAWING_WIDTH/6;
-		BubbleSortX = 5*DRAWING_WIDTH/6;
-		
-		QuickSortY = DRAWING_HEIGHT/4;
-		MergeSortY = 3*DRAWING_HEIGHT/5;
-		SelectionSortY = DRAWING_HEIGHT/4;
-		InsertionSortY = 3*DRAWING_HEIGHT/5;
-		HeapSortY=DRAWING_HEIGHT/4;
-		BubbleSortY= 3*DRAWING_HEIGHT/5;
-		
-		
 		newBars();
 		
 		
