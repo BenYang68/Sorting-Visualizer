@@ -310,8 +310,15 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	public void displayBars() {
 		
 		for(int i =0 ; i<BarList.size();i++) {
+			if(i%2==0)
+				fill(0,0,0);
+			else
+				fill(0,0,200);
+			
 			rect(250+ i*10, 300, 10, BarList.get(i).getHeight());
 		}
+		
+		fill(0,0,0);
 
 	}
 	
