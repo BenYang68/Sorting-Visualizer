@@ -14,48 +14,42 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class DrawingSurface extends PApplet implements ActionListener, MouseListener {
+
 	public static final int DRAWING_WIDTH = 1500;
 	public static final int DRAWING_HEIGHT = 1200;
 
-	int QuickSortX, QuickSortY;
-	int MergeSortX, MergeSortY;
-	int SelectionSortX, SelectionSortY;
-	int InsertionSortX, InsertionSortY;
-	int HeapSortX, HeapSortY;
-	int BubbleSortX, BubbleSortY;
+	int QuickSortX = DRAWING_WIDTH / 6;
+	int MergeSortX = DRAWING_WIDTH / 6;
+	int SelectionSortX = DRAWING_WIDTH / 2;
+	int InsertionSortX = DRAWING_WIDTH / 2;
+	int HeapSortX = 5 * DRAWING_WIDTH / 6;
+	int BubbleSortX = 5 * DRAWING_WIDTH / 6;
+
+	int QuickSortY = DRAWING_HEIGHT / 4;
+	int MergeSortY = 3 * DRAWING_HEIGHT / 5;
+	int SelectionSortY = DRAWING_HEIGHT / 4;
+	int InsertionSortY = 3 * DRAWING_HEIGHT / 5;
+	int HeapSortY = DRAWING_HEIGHT / 4;
+	int BubbleSortY = 3 * DRAWING_HEIGHT / 5;
 	int size = 300;
 	int stage = 1;
+	int SortingMethod;
 	int NumRects = 100;
 	boolean started = true, end = true;
 	long startTime = 0;
 	long EndTime = 0;
-	int sortingMethod;
-	String[] sortingName = {"", "Quick Sort", "Merge Sort", "Selection Sort",
-			"Insertion Sort", "Heap Sort", "Bubble Sort"};
 
 	ArrayList<Bars> BarList = new ArrayList<Bars>();
 	InsertionSort insertion;
 	HeapSort heapSort;
+
+	SelectionSort SelectionSort;
 
 	/**
 	 * Constructor to add obstacles and initialize bullets
 	 */
 	public DrawingSurface() {
 		super();
-		QuickSortX = DRAWING_WIDTH / 6;
-		MergeSortX = DRAWING_WIDTH / 6;
-		SelectionSortX = DRAWING_WIDTH / 2;
-		InsertionSortX = DRAWING_WIDTH / 2;
-		HeapSortX = 5 * DRAWING_WIDTH / 6;
-		BubbleSortX = 5 * DRAWING_WIDTH / 6;
-
-		QuickSortY = DRAWING_HEIGHT / 4;
-		MergeSortY = 3 * DRAWING_HEIGHT / 5;
-		SelectionSortY = DRAWING_HEIGHT / 4;
-		InsertionSortY = 3 * DRAWING_HEIGHT / 5;
-		HeapSortY = DRAWING_HEIGHT / 4;
-		BubbleSortY = 3 * DRAWING_HEIGHT / 5;
-
 		newBars();
 	}
 
@@ -96,64 +90,70 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	 * Prompts player to choose character, then starts running the game
 	 */
 	public void draw() {
+
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException ex) {
 		}
-		
+
 		if (stage == 1) {
+
 			background(250);
 			setup();
+
 			if (overCircle1(QuickSortX, QuickSortY, size)) {
 				fill(0, 250, 0);
 				text("Quick Sort", QuickSortX, QuickSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 1;
+					SortingMethod = 1;
 				}
 			} else if (overCircle1(MergeSortX, MergeSortY, size)) {
 				fill(0, 250, 0);
 				text("Merge Sort", MergeSortX, MergeSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 2;
+					SortingMethod = 2;
 				}
 			} else if (overCircle1(SelectionSortX, SelectionSortY, size)) {
 				fill(0, 250, 0);
 				text("Selection Sort", SelectionSortX, SelectionSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 3;
+					SortingMethod = 3;
 				}
 			} else if (overCircle1(InsertionSortX, InsertionSortY, size)) {
 				fill(0, 250, 0);
 				text("Insertion Sort", InsertionSortX, InsertionSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 4;
+					SortingMethod = 4;
 				}
 			} else if (overCircle1(HeapSortX, HeapSortY, size)) {
 				fill(0, 250, 0);
 				text("Heap Sort", HeapSortX, HeapSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 5;
+					SortingMethod = 5;
 				}
 			} else if (overCircle1(BubbleSortX, BubbleSortY, size)) {
 				fill(0, 250, 0);
 				text("Bubble Sort", BubbleSortX, BubbleSortY);
 				if (mousePressed) {
 					stage = 2;
-					sortingMethod = 6;
+					SortingMethod = 6;
 				}
 			}
+
 		}
 		if (stage == 2) {
 			background(250, 250, 250);
+
 			ellipse(DRAWING_WIDTH / 2, 200, 150, 150);
 			fill(250, 0, 0);
 			text("START", DRAWING_WIDTH / 2, 210);
 			setBackButton();
+
 			if (overCircle1(DRAWING_WIDTH / 2, 200, 150)) {
 				fill(0, 250, 0);
 				text("START", DRAWING_WIDTH / 2, 210);
@@ -161,19 +161,10 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 					stage = 3;
 				}
 			}
-			fill(0, 0, 0);
-			
-			text(sortingName[sortingMethod], DRAWING_WIDTH / 2, 100);
 
 			fill(0, 0, 0);
-			displayBars();
-		}
-		if (stage == 3) {
 
-			background(250, 250, 250);
-			setBackButton();
-//			text(sortingName[sortingMethod], DRAWING_WIDTH / 2, 100);
-			switch (sortingMethod) {
+			switch (SortingMethod) {
 			case 1: {
 				text("Quick Sort", DRAWING_WIDTH / 2, 100);
 				break;
@@ -184,6 +175,41 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 			}
 			case 3: {
 				text("Selection Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			case 4: {
+				text("Insertion Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			case 5: {
+				text("Heap Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			case 6: {
+				text("Bubble Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			}
+
+			fill(0, 0, 0);
+			displayBars();
+		}
+		if (stage == 3) {
+
+			background(250, 250, 250);
+			setBackButton();
+
+			switch (SortingMethod) {
+			case 1: {
+				text("Quick Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			case 2: {
+				text("Merge Sort", DRAWING_WIDTH / 2, 100);
+				break;
+			}
+			case 3: {
+				runSelection();
 				break;
 			}
 			case 4: {
@@ -247,11 +273,40 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		displayBars();
 	}
 
+	public void runSelection() {
+		if (started) {
+			startTime = System.currentTimeMillis();
+			SelectionSort = new SelectionSort(BarList, BarList.size());
+			started = false;
+		}
+
+		if (SelectionSort.nextStep() > 0) {
+
+			text("Selection Sort", DRAWING_WIDTH / 2, 100);
+			BarList = SelectionSort.getList();
+		} else {
+			if (end) {
+				EndTime = System.currentTimeMillis();
+				end = false;
+			}
+			text("Time completixy: O(N^2)", DRAWING_WIDTH / 2, 100);
+			text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH / 2, 200);
+		}
+		displayBars();
+	}
+
 	public void displayBars() {
 
 		for (int i = 0; i < BarList.size(); i++) {
+			if (i % 2 == 0)
+				fill(0, 0, 0);
+			else
+				fill(0, 0, 200);
+
 			rect(250 + i * 10, 300, 10, BarList.get(i).getHeight());
 		}
+
+		fill(0, 0, 0);
 
 	}
 
