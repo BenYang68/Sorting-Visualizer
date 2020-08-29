@@ -42,7 +42,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 	ArrayList<Bars> BarList = new ArrayList<Bars>();
 	InsertionSort insertion;
 	HeapSort heapSort;
-
+	MergeSort MergeSort;
 	SelectionSort SelectionSort;
 
 	/**
@@ -205,7 +205,7 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 				break;
 			}
 			case 2: {
-				text("Merge Sort", DRAWING_WIDTH / 2, 100);
+				runMerge();
 				break;
 			}
 			case 3: {
@@ -228,6 +228,28 @@ public class DrawingSurface extends PApplet implements ActionListener, MouseList
 		}
 
 	}
+	
+	public void runMerge() {
+		if (started) {
+			startTime = System.currentTimeMillis();
+			MergeSort = new MergeSort(BarList, BarList.size());
+			started = false;
+		}
+
+		if (heapSort.nextStep() > 0) {
+			text("Merge Sort", DRAWING_WIDTH / 2, 100);
+			BarList = MergeSort.getlist();
+		} else {
+			if (end) {
+				EndTime = System.currentTimeMillis();
+				end = false;
+			}
+			text("Time completixy: O(NLOG(N))", DRAWING_WIDTH / 2, 100);
+			text("That Took: " + (EndTime - startTime) + " Miliseconds", DRAWING_WIDTH / 2, 200);
+		}
+		displayBars();
+	}
+
 
 	public void runHeap() {
 		// background(250,250,250);
