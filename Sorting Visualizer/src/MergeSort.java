@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class MergeSort {
 	// breaks apart and merges
@@ -7,6 +8,7 @@ public class MergeSort {
 		if (nums.length == 1) {
 			return nums;
 		}
+		
 
 		int[] left = sort(Arrays.copyOfRange(nums, 0, middle));
 		int[] right = sort(Arrays.copyOfRange(nums, middle, nums.length));
@@ -33,4 +35,5 @@ public class MergeSort {
 			result[index++] = right[r++];
 		}
 		return result;
+	}
 }
